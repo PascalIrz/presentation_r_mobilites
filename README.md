@@ -5,7 +5,9 @@
 
 Point de départ : l'appli mov'around, v0 (~2500L de code, essentiellement du commentaire ligne à ligne).
 
-Enjeux de maintenance et de performance / utilisateur. 
+Enjeux de maintenance et de performance / utilisateur.
+
+Point de vue d'un développeur autodidacte.
   
 # Principes
 
