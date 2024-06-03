@@ -1,89 +1,177 @@
 ---
-title: "Untitled"
-author: "OFB Bretagne"
-date: "2024-06-03"
-output: html_document
+title: "Architecture logicielle de la *dataviz* mobilité d'ATT"
+subtitle: "Retex sur les pratiques de développement"
+author: "Pascal Irz (Agis-ta-Terre)"
+date: "17 juin 2024"
+output: 
+  ioslides_presentation:
+   # css: style.css
+    logo: ../assets/att.png
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Bonnes pratiques de développement : retour d'expérience autour de l'appli mov'around
-----------------
+# Introduction
 
-# Contexte / enjeux
+## Phasage du projet :
 
-Point de départ : l'appli mov'around, v0 (~2500L de code, essentiellement du commentaire ligne à ligne).
+- Expression de besoin
+- Installation de capteurs
+- Appli mov'around, POC fonctionnel (~3000L de code, essentiellement du commentaire ligne à ligne)
+- Refonte de l'architecture (nombreuses contributions en particulier de stagiaires)
+- Publication du *package* [telraamStats](https://cran.r-project.org/web/packages/telraamStats/index.html)
 
-Enjeux de maintenance et de performance / utilisateur.
+## Enjeux
 
-Point de vue d'un développeur autodidacte.
+- Maintenance
+- Performance / utilisateur
+
+## Point de vue
+
+- Un développeur R autodidacte hors thématique
+- Intéressé par l'usage de la donnée
+- Influencé par le mouvement pour la recherche reproductible $\Rightarrow$ intérêt aussi en ingénierie
+
+Exemple : Formation "*Bonnes pratiques pour une recherche reproductible en écologie numérique - Gestion des versions, reproductibilité, compendium et conteneurisation*", Montpellier, 2-6 décembre 2024
+
+https://www.fondationbiodiversite.fr/evenement/frb-cesab-bonnes-pratiques-pour-une-recherche-reproductible-en-ecologie-numerique-2024/
+
   
-# Principes
+# Architecture générale
 
-- Organiser le projet.
-- Coder proprement.
-- Sortir de l'appli tout ce qui peut l'être.
-- Structurer l'appli en modules.
-- Disjoindre le fond et la forme.
-- Packager (programmation fonctionnelle, tests, soumission).
-- Optimiser la réactivité (mise à jour auto des données => parcimonie du téléchargement).
-- Documenter.
+## Objectifs
 
-# Organiser le projet
+- Simplifier la maintenance (tests, débuggage, montée de versions)
+- Améliorer la transférabilité
+- Gagner en performance (en particulier à la connexion)
+
+## Principe
+
+Subdivision du macro-projet en entités plus maniables
+
+## Bénéfice secondaire
+
+Plusieurs productions qui chacunes peuvent rentrer dans une dynamique de partage / amélioration :
+
+- Appli
+- Packages
+
+# Application
+
+![](../assets/mov_around_small.png)
+
+## Peu de modifications sur les fonctionnalités ...
+
+## ... mais sous le capot
+
+- Simplification
+
+  - séparer le fond et la forme
+  - "externaliser" tout ce qui peut l'être
+
+- Passage en structure modulaire
+- Optimisation
+
+  - pas de recalculs
+  - téléchargement des données
+
+# Package(s)
+
+## Définition
+
+En général, un *package* = 
+
+- un ensemble cohérent et documenté de fonctions
+- une manière simple de partager des outils
+- outils de test
+- possibilité de *peer-review*
+
+## Quand est-il nécessaire de créer un package ?
+
+- Lorsque vous réalisez une analyse, si vous utilisez plus de deux fois une même portion de code (que vous avez “copié-collé”), vous devez créer une fonction;
+- Si vous réutilisez une fonction entre deux analyses (en “copiant-collant” le code source de cette fonction), vous devez faire un package.
+
+## La référence
+
+![](../assets/r_packages.jpg)
+
+[Wickham, Hadley. 2015. R Packages: Organize, Test, Document, and Share Your Code. " O’Reilly Media, Inc.". ](https://www.oreilly.com/library/view/r-packages/9781491910580/)
+
+
+## Programmation fonctionnelle
+
+Subdiviser un programme qui réalise des opérations complexes en fonctions élémentaires permet de :
+
+- travailler sur des objets plus simples (briques)
+- éviter de répéter des blocs de code
+- optimiser par fonction (NB en R, éviter les boucles)
+
+# Organisation des (sous-) projets
+
+##
 
 - Arborescences standards.
 - Nommage des sous-répertoires, des fichiers, des fonctions, des arguments de fonctions.
 - "projet" R => chemins en relatif (en particulier si utilisation d'une forge).
 - pas de scripts trop longs => 99_make.R
 
-# Architecture générale
-
-Objectif général : simplifier la maintenance (tests, débuggage, montée de versions).
-
-Bénéfice secondaire : plusieurs productions qui chacunes peuvent rentrer dans une dynamique de partage / amélioration. 
-
-## Sortir de l'appli tout ce qui peut l'être
-
-
-## Structurer l'appli en modules
-
-
-## Le fond et la forme
-
-
-## Programmation fonctionnelle
-
-- écrire des fonctions
-- packager (yc tests unitaires)
-- soumettre
-
-
-  
-- parcimonie : pas de recalculs
-- optimisation : oui mais pas trop. vectorisation / boucles
-  
-
-
 # La forme du code
+
+##
 
 - Standardiser le style de code (e.g. tidyverse)
 - Indentation (cf. fonction d'aide "Reformat code" de RStudio)
 
 # Documentation
-Essentiel en particulier pour un projet tel que celui sur les mobilités car nbses personnes contribuent au développement (environ 10 déjà).
-Packagedown.
 
-## Commentaires
-En mettre partout. Explicite à l'échelle de la ligne ou du bloc de code.
+## Pourquoi ?
 
-## Métadonnées des fonctions
-Obligatoire. Explique à quoi sert une fonction et comment l'utiliser. 
+Pour permettre la maintenance et la réutilisation
 
-## Tutos / vignettes
-Démonstration de chaines de traitement (suite de fonctions mobilisées) avec toute la place nécessaire.
+Donc essentiel pour tout projet 
 
-# Versionnage
+- hors *one shot*
+- et/ou mobilisant plusieurs développeurs (environ une dizaine déjà ici).
+
+## Pour qui ? 
+
+S'adresse aux personnes :
+
+- assurant la maintenance
+- souhaitant regarder sous le capot
+- voulant réutiliser
+
+... y compris "*the other me*" du développeur avec le nez dans le guidon.
+
+## Quelles parties documenter ?
+
+Des niveaux emboîtés et complémentaires : 
+
+- **A l'intérieur du code des fonctions** : commenter à l'échelle de la ligne ou du bloc de code.
+- **Métadonnées des fonctions** : expliquer à quoi sert une fonction et comment l'utiliser.
+- **Métadonnées des packages et applis** : utilité, version, licence, etc. 
+- **Des chaînes de traitement complètes** : tutos / vignettes
+
+## Les outils
+
+![](../assets/package_logos.png)
+
+# CI / CD
+
+## Versionnage
+
+Cf. présentation de Tim.
+
+## Mise à jour des données
+
+GH Action hebdomadaire
+
+## Déploiement des mises à jour
+
+GH action sur *commit* (+*push*)
+
+## Développement collaboratif
 
 Cf. présentation de Tim.
