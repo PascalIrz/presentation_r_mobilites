@@ -13,17 +13,18 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
 # Introduction
 
-## Phasage du projet :
+## Phasage du projet
 
-- Expression de besoin
-- Installation de capteurs
-- Appli mov'around, POC fonctionnel (~3000L de code, essentiellement du commentaire ligne à ligne)
-- Refonte de l'architecture (nombreuses contributions en particulier de stagiaires)
-- Publication du *package* [telraamStats](https://cran.r-project.org/web/packages/telraamStats/index.html)
+1. Expression de besoin
+2. Installation de capteurs
+3. Appli mov'around, POC fonctionnel (~3000L de code, essentiellement du commentaire ligne à ligne)
+4. Refonte de l'architecture (nombreuses contributions en particulier de stagiaires)
+5. Publication du *package* [telraamStats](https://cran.r-project.org/web/packages/telraamStats/index.html)
 
-## Enjeux
+## Enjeux depuis le V1 de mov'around
 
 - Maintenance
 - Performance / utilisateur
@@ -49,7 +50,8 @@ https://www.fondationbiodiversite.fr/evenement/frb-cesab-bonnes-pratiques-pour-u
 
 ## Principe
 
-Subdivision du macro-projet en entités plus maniables
+- Subdivision du macro-projet en entités plus maniables
+- Documentation
 
 ## Bénéfice secondaire
 
@@ -100,7 +102,7 @@ En général, un *package* =
 [Wickham, Hadley. 2015. R Packages: Organize, Test, Document, and Share Your Code. " O’Reilly Media, Inc.". ](https://www.oreilly.com/library/view/r-packages/9781491910580/)
 
 
-## Programmation fonctionnelle
+## Programmation fonctionnelle {data-background=../assets/bg.jpg data-background-size=cover}
 
 Subdiviser un programme qui réalise des opérations complexes en fonctions élémentaires permet de :
 
@@ -112,10 +114,25 @@ Subdiviser un programme qui réalise des opérations complexes en fonctions él�
 
 ##
 
+<div style="float: left; width: 50%;">
+
 - Arborescences standards.
-- Nommage des sous-répertoires, des fichiers, des fonctions, des arguments de fonctions.
-- "projet" R => chemins en relatif (en particulier si utilisation d'une forge).
-- pas de scripts trop longs => 99_make.R
+- Nommage explicite et cohérent des sous-répertoires, des fichiers, des fonctions, des arguments de fonctions.
+- "Projet" R $\Rightarrow$ portabilité (chemins en relatif, en particulier si utilisation d'une forge).
+- Pas de scripts trop longs $\Rightarrow$ 99_make.R
+
+</div>
+
+<div style="float: right; width: 40%;">
+
+![](../assets/arborescence.PNG)    
+
+<br/><br/>
+
+![](../assets/scripts.PNG)
+
+</div>
+
 
 # La forme du code
 
@@ -126,11 +143,11 @@ Subdiviser un programme qui réalise des opérations complexes en fonctions él�
 
 # Documentation
 
-## Pourquoi ?
+## Pourquoi documenter ?
 
 Pour permettre la maintenance et la réutilisation
 
-Donc essentiel pour tout projet 
+$\Rightarrow$ essentiel pour tout projet 
 
 - hors *one shot*
 - et/ou mobilisant plusieurs développeurs (environ une dizaine déjà ici).

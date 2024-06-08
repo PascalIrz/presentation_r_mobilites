@@ -1,0 +1,6 @@
+ slides > slide:not(.title-slide) {
+   background-image: url("../assets/att.png");
+   background-size: 15%;
+   background-repeat: no-repeat;
+   background-position: 3% 97%;
+ }
