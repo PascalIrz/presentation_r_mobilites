@@ -16,9 +16,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-## Phasage du projet
+## Phasage de l'initiative
 
-1. Expression de besoin
+1. Expression de besoin (projet de contournement routier)
 2. Installation de capteurs
 3. Appli mov'around, POC fonctionnel (~3000L de code, essentiellement du commentaire ligne à ligne)
 4. Refonte de l'architecture (nombreuses contributions en particulier de stagiaires)
@@ -41,6 +41,15 @@ knitr::opts_chunk$set(echo = TRUE)
 </font size>
   
 # Architecture générale
+
+## Le logiciel R
+
+![](../assets/r_logo.png){width=300px}
+
+- Langage de programmation
+- Origine stats / académique
+- 20 000 + packages
+- Diversification des usages
 
 ## Objectifs de la refonte
 
@@ -87,7 +96,7 @@ En général, un *package* =
 
 - un ensemble cohérent et documenté de fonctions
 - une manière simple de partager des outils
-- outils de test
+- moyen de tester le code
 - possibilité de *peer-review*
 
 ## Quand est-il nécessaire de créer un package ?
@@ -171,10 +180,10 @@ Y compris des tutoriels !
 
 Pour permettre la maintenance et la réutilisation
 
-$\Rightarrow$ essentiel pour tout projet 
+$\Rightarrow$ essentiel pour tout projet, surtout :
 
-- hors *one shot*
-- et/ou mobilisant plusieurs développeurs (environ une dizaine déjà ici).
+- s'il mobilise plusieurs développeurs (environ une dizaine déjà ici)
+- s'il a vocation à être mis à jour
 
 ## Pour qui ? 
 
@@ -222,3 +231,15 @@ Fréquence hebdomadaire
 ## Versionnage et développement collaboratif
 
 Cf. présentation de Tim.
+
+
+
+## 
+
+<br><br><br><br><br><br>
+
+<center>
+
+<font size="14">Merci de votre attention</font>
+
+</center>
