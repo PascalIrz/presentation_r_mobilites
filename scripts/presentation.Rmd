@@ -82,11 +82,16 @@ Plusieurs productions qui chacunes peuvent rentrer dans une dynamique de partage
   - séparation fond - forme
   - "externalisation" tout ce qui peut l'être
 
-- Passage en structure modulaire
 - Optimisation
 
   - pas de recalculs
   - téléchargement des données
+
+## Passage en structure modulaire
+
+![](../assets/server.PNG)
+
+![](../assets/ui.PNG)
 
 # Package(s)
 
@@ -169,10 +174,11 @@ Y compris des tutoriels !
 
 # La forme du code
 
-##
+## Améliorer la lisibilité
 
 - Standardiser le style de code (e.g. tidyverse)
 - Indentation (cf. fonction d'aide "Reformat code" de RStudio)
+- Nommer explicitement les arguments des fonctions
 
 # Documentation
 
